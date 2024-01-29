@@ -1,1 +1,11 @@
-/venv
+# Archivos de entorno virtual
+LibraryManager/
+
+# Archivos de caché
+__pycache__/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+__pycache__
+
