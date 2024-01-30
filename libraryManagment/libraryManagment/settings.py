@@ -9,22 +9,22 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import sys
+import sys, environ
 from pathlib import Path
-from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
 # Carga las variables de entorno desde el archivo .env
-try:
-    config_path = Path(__file__).resolve().parent.parent / '.env'
-    config.read_dotenv(config_path)
-    
-except config.error.DotenvFileNotFound:
-    print("Advertencia: El archivo .env no se encontró. Asegúrate de crearlo y configurar las variables de entorno.")
+
+config_path = BASE_DIR / '.env'
+if config_path.exists():
+    environ.Env.read_env(config_path)
+else:
+    print("Error: El archivo .env no se encontró en la ruta especificada.")
     sys.exit(1)
-    
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -95,11 +95,11 @@ WSGI_APPLICATION = 'libraryManagment.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
@@ -165,7 +165,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Uso del modelo de usuario predeterminado
-AUTH_USER_MODEL = 'myapp.CustomUser'  # Reemplaza 'myapp' con el nombre de tu aplicación
+# AUTH_USER_MODEL = 'libraryManagment.CustomUser'  # Reemplaza 'myapp' con el nombre de tu aplicación
 
 # Configuración para el almacenamiento seguro de contraseñas
 PASSWORD_HASHERS = [

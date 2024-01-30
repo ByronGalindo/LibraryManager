@@ -1,6 +1,9 @@
 # Archivos de entorno virtual
 LibraryManager/
 
+# Archivos de depuracion
+.vscode/
+
 # Archivos de caché
 __pycache__/
 
