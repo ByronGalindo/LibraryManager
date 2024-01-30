@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',    
     'rest_framework',                           # Inclusion de REST
     'rest_framework_simplejwt',                 # Inclusion de JWT
+    'autenticacion',
 ]
 
 # Configuración para utilizar JWT
@@ -153,15 +154,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuraciones Adicionales de Seguridad en el protocolo
 
-# Asegurarse de que la aplicación solo funcione en modo seguro (HTTPS)
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-# HSTS para solicitudes futuras (indica a los navegadores que utilicen siempre HTTPS)
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# # Asegurarse de que la aplicación solo funcione en modo seguro (HTTPS)
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+                                                                                # TODO Uncomment for passing to prod
+# # HSTS para solicitudes futuras (indica a los navegadores que utilicen siempre HTTPS)
+# SECURE_HSTS_SECONDS = 31536000
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
 
 # Configuraciones Adicionales del guardado de credenciales
 
