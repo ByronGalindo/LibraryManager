@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',                           # Inclusion de REST
     'rest_framework_simplejwt',                 # Inclusion de JWT
     'autenticacion',
+    'usuarios',
 ]
 
 # Configuración para utilizar JWT
