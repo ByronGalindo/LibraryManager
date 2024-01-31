@@ -59,7 +59,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
         instance = self.get_object()
         
         # Verificar si el usuario que realiza la actualización es un administrador
-        if not request.user.user_type == CustomUser.ADMIN:
+        if not (request.user.user_type == CustomUser.ADMIN or 'user_type' not in request.data):
             return Response({'detail': 'No tienes permisos para actualizar el tipo de usuario.'}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
