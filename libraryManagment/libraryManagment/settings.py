@@ -49,9 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',    
     'rest_framework',                           # Inclusion de REST
     'rest_framework_simplejwt',                 # Inclusion de JWT
-    'autenticacion',
-    'usuarios',
-    'general',
+    'autenticacion',                            # Gestion de JWT
+    'usuarios',                                 # Gestion de Usuarios
+    'general',                                  # Funciones de proposito general
+    'drf_yasg',                                 # Inclusion para la documentacion
 ]
 
 # Configuración para utilizar JWT
@@ -67,6 +68,7 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'general.middlewares.CustomResponseMiddleware',             # Middleware para la gestion y formateo del response (revisar middleware.py en app general)
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,8 +76,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'general.middlewares.CustomResponseMiddleware',
 ]
+
+CUSTOM_RESPONSE_MIDDLEWARE_EXCLUDE_APPS = ['general']           # Excluimos la app general para gestionar la documentacion
 
 ROOT_URLCONF = 'libraryManagment.urls'
 

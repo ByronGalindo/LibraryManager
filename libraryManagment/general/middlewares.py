@@ -10,6 +10,15 @@ class CustomResponseMiddleware:
 
         # Verificar si la respuesta es de tipo Response de DRF
         if isinstance(response, Response):
+            
+            # Excluimos las vistas de swagger
+            if 'swagger' in request.path:
+                return response
+
+            # Excluimos las vistas de redoc
+            if 'redoc' in request.path:
+                return response
+            
             # Verificar si la respuesta original contiene errores
             if response.status_code >= 400:
                 # En caso de error, construir el nuevo formato de respuesta con la información del objeto
